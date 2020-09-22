@@ -30,7 +30,8 @@ class BlogEtcServiceProvider extends ServiceProvider
                      '2018_05_28_224023_create_blog_etc_posts_table.php',
                      '2018_09_16_224023_add_author_and_url_blog_etc_posts_table.php',
                      '2018_09_26_085711_add_short_desc_textrea_to_blog_etc.php',
-                     '2018_09_27_122627_create_blog_etc_uploaded_photos_table.php'
+                     '2018_09_27_122627_create_blog_etc_uploaded_photos_table.php',
+                     '2020_05_27_104123_add_parameters_blog_etc_categories_table.php'
                  ] as $file) {
 
             $this->publishes([
@@ -43,6 +44,8 @@ class BlogEtcServiceProvider extends ServiceProvider
             __DIR__ . '/Views/blogetc' => base_path('resources/views/vendor/blogetc'),
             __DIR__ . '/Config/blogetc.php' => config_path('blogetc.php'),
             __DIR__ . '/css/blogetc_admin_css.css' => public_path('blogetc_admin_css.css'),
+            __DIR__ . '/css/hessam-blog.css' => public_path('hessam-blog.css'),
+            __DIR__ . '/js/hessam-blog.js' => public_path('hessam-blog.js'),
         ]);
 
 

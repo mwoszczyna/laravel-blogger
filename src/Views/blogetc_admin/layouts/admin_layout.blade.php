@@ -41,8 +41,8 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }} WebDevEtc Blog Admin
+            <a class="navbar-brand hessam-blog-title" href="{{ route('blogetc.admin.index') }}">
+                {{ config('app.name', 'Laravel') }} Blog Dashboard
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -69,7 +69,16 @@
                            aria-haspopup="true" aria-expanded="false" >
                             Logged in as {{ Auth::user()->name }}
                         </a>
-
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -77,14 +86,19 @@
     </nav>
 
     <main class="py-4">
-
-        <div class='container'>
-            <div class='row'>
-                <div class='col-md-3'>
+        <div class="container">
+            <div class='row full-width-div'>
+                <div class='col-md-3 list-group-color'>
                     @include("blogetc_admin::layouts.sidebar")
-                </div>
-                <div class='col-md-9 '>
+                    <div class=' list-group-color text-center mt-5 mb-3 text-muted hessam-version'>
+                        <small><a href='https://github.com/vhessam/laravel-blogger'>Laravel Blogger</a></small>
 
+                        <small>
+                            Version 7.3
+                        </small>
+                    </div>
+                </div>
+                <div class='col-md-9 main-content'>
 
                     @if (isset($errors) && count($errors))
                         <div class="alert alert-danger">
@@ -106,8 +120,6 @@
                         </div>
                     @endif
 
-
-
                     @yield('content')
                 </div>
             </div>
@@ -115,15 +127,9 @@
     </main>
 </div>
 
-<div class='text-center mt-5 pt-5 mb-3 text-muted'>
-    <small><a href='https://webdevetc.com/'>Laravel Blog Package provided by Webdevetc</a></small>
-</div>
-
 
 @if( config("blogetc.use_wysiwyg") && config("blogetc.echo_html") && (in_array( \Request::route()->getName() ,[ 'blogetc.admin.create_post' , 'blogetc.admin.edit_post'  ])))
-    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"
-            integrity="sha384-BpuqJd0Xizmp9PSp/NTwb/RSBCHK+rVdGWTrwcepj1ADQjNYPWT2GDfnfAr6/5dn"
-            crossorigin="anonymous"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
     <script>
         if( typeof(CKEDITOR) !== "undefined" ) {
             CKEDITOR.replace('post_body');

@@ -1,22 +1,53 @@
-#### This package is based on [WebDevEtc's](https://github.com/WebDevEtc/BlogEtc) package for laravel
-I made it compatible with laravel6.x and higher with adding some dependencies and code change.
+# Complete Laravel Blog Package
+## With Multi-level Categories and Full Text Search
+It has everything you need to quickly and easily add a blog to your laravel app.
 
-# WebDevEtc BlogEtc
-## Easy to install Laravel Package for adding a full blog (with admin backend) to your Laravel app
-### 5 minutes to install! Quick and easy!
+### Quick and easy installation
 
 Install with following command and follow the instructions. 
 
     composer require hessam/laravel-blogger
 
-## Introduction
+### For Complete Setup Instructions (with video guide), please Visit [The Install Guide](https://hessam.binshops.com/laravel-blog-package#setup)
 
-This is [WebDevEtc's](https://webdevetc.com/) BlogEtc package. It has everything you need to quickly and easily add a blog to your laravel app.
+To see package on Packagist click this [Link](https://packagist.org/packages/hessam/laravel-blogger)
 
+## Recent Changes  
+- **8.0.0** Compatibility with Laravel 8
 
-## FOR 5 MINUTE INSTALLATION GUIDE (with video guide), PLEASE VISIT [THE INSTALL GUIDE HERE](https://webdevetc.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide)
+### Screen Shots
 
-[Install guide](https://webdevetc.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide) • [Packagist](https://packagist.org/packages/webdevetc/blogetc) << MAKE SURE YOU FOLLOW THE INSTURCTIONS. They're simple, but must be followed.
+  <p align="center">
+    <img src="https://hessam.binshops.com/wp-content/uploads/2020/08/Screen-Shot-2020-08-08-at-6.23.35-PM-1024x560.png" width="500px" title="Add post">
+  </p>
+  <p align="center">
+  Add post
+  </p>
+
+  <p align="center">
+    <img src="https://hessam.binshops.com/wp-content/uploads/2020/08/Screen-Shot-2020-08-08-at-6.19.42-PM-1024x558.png" width="500px" title="All posts">
+  </p>
+   <p align="center">
+    All posts
+    </p>
+  
+  <p align="center">
+    <img src="https://hessam.binshops.com/wp-content/uploads/2020/08/Screen-Shot-2020-08-08-at-6.03.39-PM-1-1024x560.png" width="500px" title="Add category">
+  </p>
+  <p align="center">
+      Add category
+   </p>
+  
+## What/who this package is for:
+
+ - For websites running Laravel (6.x and higher)
+ - Who want to have a site blog, and have an easy to use interface to write blog posts/assign categories/manage existing posts
+ - Where only admin users can edit/manage the blog (this is not suitable for every user on your site to be able to manage posts)
+ - Where you understand that posts can (potentially) contain JS or any other code, so you should only allow trusted admin users to add/edit/delete/manage the blog posts
+
+## What this package is NOT for:
+
+ - Sites where you want your (normal, non-admin) users to write blog posts. You must set `canManageBlogEtcPosts()` on your user model to ONLY allow trusted users.
 
 ## Features
 
@@ -63,18 +94,6 @@ This is [WebDevEtc's](https://webdevetc.com/) BlogEtc package. It has everything
    - and then add 1 method to your `\App\User` file (`canManageBlogEtcPosts()`
    - __but please see the install instructions to get everything up and working__
 
-
-## What/who this package is for:
-
- - For websites running Laravel (6.x and higher)
- - Who want to have a site blog, and have an easy to use interface to write blog posts/assign categories/manage existing posts
- - Where only admin users can edit/manage the blog (this is not suitable for every user on your site to be able to manage posts)
- - Where you understand that posts can (potentially) contain JS or any other code, so you should only allow trusted admin users to add/edit/delete/manage the blog posts
-
-## What this package is NOT for:
-
- - Sites where you want your (normal, non-admin) users to write blog posts. You must set `canManageBlogEtcPosts()` on your user model to ONLY allow trusted users.
-
 ## Important notes
 
 1) Anyone who can manage blog posts (defined by the `canManageBlogEtcPosts()` method you add to your User model) can submit any HTML which is echoed out. This is a security issue. If you don't trust the content you should add a custom view and escape the blog content before echoing it, and set `use_custom_view_files` in the config to false.
@@ -82,27 +101,26 @@ This is [WebDevEtc's](https://webdevetc.com/) BlogEtc package. It has everything
 2) if `use_custom_view_files` is enabled in the config (which it is by default), it means that any post with a custom view file set (details in the docs) can include any file within `/resources/views/custom_blog_posts`, which blade will execute. This package gives no method to edit any file within that directory though.
 
 
-
-## How to install BlogEtc to your laravel app
-
-Please see our [BlogEtc Laravel Blog Package Documentation/install guide](https://webdevetc.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide) for install instructions. (It is very simple - done via composer/artisan commands, plus adding one method to your \App\User model (`canManageBlogEtcPosts()` which should return `true` if this user can manage the blog).
-
-
 ## How to customise the blog views/templates
 
-This is easy to do, and further detail can be found in our  [BlogEtc Laravel Blog Package Documentation](https://webdevetc.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#guide_to_views).
-
 After doing the correct `vendor:publish`, all of the default template files will be found in /resources/views/vendor/blogetc/ and are easy to edit to match your needs.
+
+### Customizing admin views
+If you need to customize the admin view, just copy the files from
+`vendor/webdevetc/blogetc/src/Views/blogetc_admin`
+to
+`resources/views/vendor/blogetc_admin`
+Then you can modify them just like any other view file.
 
 ## Routes
 
 It will auto set all required routes (both public facing, and admin backend). There are some config options (such as changing the /blog/ url to something else), which can be done in the blogetc.php file.
 
 ## Config options
-
-Please see the [BlogEtc config option documentation here](https://webdevetc.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#config_options) for details.
-
 All config options have comments which describe what they do. Please just refer to the `blogetc.php` file in your /config/ dir.
+
+### Custom User Model
+You can change the default user model through the config file
 
 ## Events
 
@@ -114,32 +132,9 @@ Add these (and an Event Listener) to your `EventServiceProvider.php` file to mak
 
 There is a built in captcha (anti spam comment) system built in, which will be easy for you to replace with your own implementation.
 
-  Please see [our Captcha docs](https://webdevetc.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#captcha) for  more details.
+  Please see [this Captcha docs](https://hessam.binshops.com/laravel-blog-package#captcha) for  more details.
 
-## TODO
-
-This is a list of features or things that I want to eventually get round to adding
-
-- Better UI for uploading images/viewing uploaded images
-- Link uploaded images to blog post. At the moment they are not related.
-- Allow users to remove a featured image from a blog post.
-- Option to use HTMLPurifier to sanatise output.
-- Better options for assigning post authors (currently it just assigns the currently logged in user). However, if site has 10,000+ users do we really want an UI interface for this? The alternative is to add something like a a is_admin field to the `users` table and only show admin users.
-- Possibly add tags (we already have categories) but I am not sure how useful they really are, given that we already have categories.
-- Pagination for comments on view single post? At the moment we limit it to a high number (default in config is 5000).
-- RSS feed: shows from full (stripped tags) ->html of blog post (although has a setTextLimit() on it) - need to trim this, and if it uses custom view files then it should render that (without html).
-- Email notification to admin when new comment is added
-- RSS to use generate_introduction() for its contents.
-
-
-## Recent changes:
-
-1) Added full text search and search views. You have to enable it in the config file (see latest config file)
-2) Need more than the 3 default image sizes? Add more in the config/blogetc.php file, add the database column for it and it'll work!
-
-## Having problems, something is not working?
-
-*Image upload errors?*
+## Image upload errors
 
 Try adding this to config/app.php:
 
@@ -149,11 +144,26 @@ Try adding this to config/app.php:
 - Ensure that /public/blog_images (or whatever directory you set it to in the config) is writable by the server
 - You might need to set a higher memory limit, or upload smaller image files. This will depend on your server. I've used it to upload huge (10mb+) jpg images without problem, once the server was set up correctly to handle larger file uploads.
 
-
-
-
-## Version History
-- 7.0.x                 - For Laravel 6.x & 7.x
+## Version History    
+- **8.0.0** Compatibility with Laravel 8
+- 7.3.2 Some bug fixes
+- 7.3.0 New Admin UI
+- 7.2.2                 
+    - bug fix: do not show search bar when it's disabled
+    - feature: configure to show full text post or preview 
+- 7.2.1                 - adds logout button at admin panel
+- 7.2.0                 
+    - adds sub-category functionality to blog
+    - adds reading progress bar feature (if you upgrade, re-publish config file and view files)
+- 7.1.8                 - ability to remove images from posts (this feature does not work for old posts)
+- 7.1.7                 - updates CKEditor
+- 7.1.5                 - minor fix for recent posts
+- 7.1.4                 - updates fulltext search package which solves the search issue
+- 7.1.2                 - shows categories on blog home page - minor fix (if you upgrade try to re-publish view files)
+- 7.1.1                 - minor fix and some admin panel text changes
+- 7.1.0                 - Adds support for custom user model (if you upgrade, try to publish new config)
+- 7.0.2                 - Bug fix for listing posts and search page
+- 7.0.1                 - made compatible with Laravel 6.x & 7.x
 - 3.1                   - minor fixes
 - 3.0.3                 - fixed RSS feed cache issue
 - 3.0.2                 - fixed default medium image size (changed to 600x400)
@@ -168,10 +178,7 @@ Try adding this to config/app.php:
 - 0.3                   - Small changes, packagist settings.
 - 0.1                   - Initial release
 
-
-## Issues, support, bug reports, security issues
-
-Please contact me on: hessam.modaberi@gmail.com
+Contact: hessam.modaberi@gmail.com
 
 
 

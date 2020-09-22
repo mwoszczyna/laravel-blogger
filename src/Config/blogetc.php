@@ -1,8 +1,14 @@
 <?php
 
-//config for webdevetc/blogetc
+//config for hessam/laravel-blogger
 
 return [
+
+    //your custom User model
+    'user_model'=>\App\User::class,
+
+    // reading progress bar is the bar which shows on top of your post when you are scrolling down the page. You can disable this feature if you want
+    'reading_progress_bar' => true,
 
     'include_default_routes' => true, // set to false to not include routes.php for BlogEtcReaderController and admin related routes. Default: true. If you disable this, you will have to manually copy over the data from routes.php and add it to your web.php.
 
@@ -168,10 +174,10 @@ return [
         ],
     ],
 
-
     'search' => [
-        'search_enabled' => false, // is search enabled? By default this is disabled, but you can easily turn it on.
+        'search_enabled' => true, //you can easily turn off search functionality
     ],
 
-
+    //Shows full text of post in listing pages like search result page or category page. Now it shows a preview
+    'show_full_text_at_list' => true,
 ];

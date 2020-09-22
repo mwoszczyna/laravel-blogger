@@ -15,9 +15,11 @@ Route::group(['middleware' => ['web'], 'namespace' => '\WebDevEtc\BlogEtc\Contro
         Route::get('/feed', 'BlogEtcRssFeedController@feed')
             ->name('blogetc.feed'); //RSS feed
 
-        Route::get('/category/{categorySlug}',
-            'BlogEtcReaderController@view_category')
-            ->name('blogetc.view_category');
+        Route::get('/category{subcategories}', 'BlogEtcReaderController@view_category')->where('subcategories', '^[a-zA-Z0-9-_\/]+$')->name('blogetc.view_category');
+
+//        Route::get('/category/{categorySlug}',
+//            'BlogEtcReaderController@view_category')
+//            ->name('blogetc.view_category');
 
         Route::get('/{blogPostSlug}',
             'BlogEtcReaderController@viewSinglePost')
@@ -61,6 +63,10 @@ Route::group(['middleware' => ['web'], 'namespace' => '\WebDevEtc\BlogEtc\Contro
             'BlogEtcAdminController@update_post')
             ->name('blogetc.admin.update_post');
 
+        //Removes post's photo
+        Route::get('/remove_photo/{slug}',
+            'BlogEtcAdminController@remove_photo')
+            ->name('blogetc.admin.remove_photo');
 
         Route::group(['prefix' => "image_uploads",], function () {
 
